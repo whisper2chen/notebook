@@ -85,3 +85,12 @@ echo "3.14 * 8 ^ 2" | bc
 echo "scale=10;10/3" | bc #scale指定计算精度
 echo "obase=2;100" | bc #二进制输出值
 ```
+
+8. shell管道
+```Shell
+#<表示stdin
+#>表示stdout
+#2>表示stderr
+#管道传输默认是标准输出
+# cmd1 2>&1 | cmd2 可以重定向stderr 到管道
+```
