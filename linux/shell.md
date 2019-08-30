@@ -22,3 +22,28 @@ echo 'my name is ${MYNAME}' # shell输出plain text
 ```
 3. printf
 > printf "%-5s %-10s %-4.2f" No1 Tom 98.675 # -指定左对齐 数字指定对齐长度
+
+4. colorfull output
+> 文本颜色
+```
+\e[0m 重置
+echo -e "\e[1;30m黑色\e[0m"
+echo -e "\e[1;31m红色\e[0m"
+echo -e "\e[1;32m绿色\e[0m"
+echo -e "\e[1;33m黄色\e[0m"
+echo -e "\e[1;34m蓝色\e[0m"
+echo -e "\e[1;35m洋红色\e[0m"
+echo -e "\e[1;36m青色\e[0m"
+echo -e "\e[1;37m白色\e[0m"
+```
+> 背景颜色
+```
+echo -e "\e[1;40m黑色\e[0m"
+echo -e "\e[1;41m红色\e[0m"
+echo -e "\e[1;42m绿色\e[0m"
+echo -e "\e[1;43m黄色\e[0m"
+echo -e "\e[1;44m蓝色\e[0m"
+echo -e "\e[1;45m洋红色\e[0m"
+echo -e "\e[1;46m青色\e[0m"
+echo -e "\e[1;47m白色\e[0m"
+```
