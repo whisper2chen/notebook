@@ -93,4 +93,95 @@ echo "obase=2;100" | bc #二进制输出值
 #2>表示stderr
 #管道传输默认是标准输出
 # cmd1 2>&1 | cmd2 可以重定向stderr 到管道
+# cmd1 > /dev/null 2>&1 可以重定向到null设备 什么都不输出
+# cmd1 | tee file   可以同时输出到stdout和file中
+
+$ cat text.txt
+1
+2
+3
+$ out=$(cat text.txt)
+$ echo $out
+1 2 3 #  丢失了1 、2 、3 中的\n
+$ out="$(cat text.txt)"
+$ echo $out
+1
+2
+3
+```
+
+9. 数组与关联数组
+数组<br>
+```Shell
+array=(item1 item2 item3 item4)
+echo ${array[0]}   #打印第一个元素
+echo ${array[*]}   #打印所有元素
+```
+关联数组<br>
+从bash 4.0之后开始支持<br>
+```Shell
+declare -A array
+array[key1]=value1
+array[key2]=value2
+echo ${array[key1]}
+echo ${!array[*]}  #打印所有的key值
+```
+
+10. 终端控制
+```
+stty -echo #取消终端的回显
+stty echo  #打开回显
+
+tput sc    #记录光标位置
+tput rc    #返回之前记录的光标位置
+tput ed    #删除当前光标位置到行尾的所有内容
+```
+
+11. date
+```Shell
+date +%s #打印时间戳
+date -d "2019-8-31 8:54" +%s  #转换字符串表示的时间
+date -d @1567212893           #转换时间戳到字符串表示
+```
+
+12. 脚本调试
+```Shell
+bash -x test.sh #调试的信息会默认输出到stderr
+
+#也可以在脚本中在想调试的部分
+set -x
+some block to debug
+set +x
+```
+
+13.  函数
+```Shell
+function f() {
+  echo -n "something to output"
+}
+
+echo $(f)   #调用函数
+```
+
+14. read
+```
+(1) 下面的语句从输入中读取n个字符并存入变量 variable_name ：
+read -n number_of_chars variable_name
+例如：
+$ read -n 2 var
+$ echo $var
+(2) 用无回显的方式读取密码：
+read -s var
+(3) 使用 read 显示提示信息：
+read -p "Enter input:" var
+(4) 在给定时限内读取输入：
+read -t timeout var
+例如：
+$ read -t 2 var
+# 在2 秒内将键入的字符串读入变量var
+(5) 用特定的定界符作为输入行的结束：
+read -d delim_char var
+例如：
+$ read -d ":" var
+hello: #var 被设置为hello
 ```
